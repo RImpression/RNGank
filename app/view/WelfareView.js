@@ -4,9 +4,11 @@ import {
     Text,
     Platform,
     StyleSheet,
+    TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import NavigationBar from './common/NavigationBar';
+import WebDetailView from './WebDetailView';
 import { fetchGankGirlData } from '../actions/GankApi';
 
 class WelfareView extends Component {
@@ -35,6 +37,14 @@ class WelfareView extends Component {
                     title={'福利'}
                 />
                 <Text style={{fontSize:20}}>This is WelfareView</Text>
+                <TouchableOpacity onPress={()=>{
+                    this.props.navigator.push({
+                        component:WebDetailView,
+                        params:{'hello world':1111},
+                    });
+                }}>
+                    <Text>点击跳转</Text>
+                </TouchableOpacity>
             </View>
         )
     }

@@ -8,6 +8,8 @@ import {Navigator} from 'react-native-deprecated-custom-components';
 import MainNav from './MainNav';
 import { Provider } from 'react-redux';
 import configureStore from './stores';
+let  window = global || window;
+window.Common = require('./config/Common');
 
 const store = configureStore();
 
@@ -17,7 +19,6 @@ class App extends Component {
         return <Component {...route.params} navigator={navigator}/>
     }
     render() {
-        console.log(7777,store);
         return(
             <Provider store={store}>
                 <Navigator
