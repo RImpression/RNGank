@@ -31,12 +31,12 @@ export default class ClassificationView extends Component {
                     initialPage={0}
                     renderTabBar={() => <ScrollableTabBar style={{height: 40, borderWidth: 0, elevation: 2}}
                                                       tabStyle={{height: 39}}/>}>
-                    <CellView tabLabel="android" title="this is android"/>
-                    <CellView tabLabel="ios" title="this is ios"/>
+                    <CellView tabLabel="Android" title="this is android"/>
+                    <CellView tabLabel="iOS" title="this is ios"/>
                     <CellView tabLabel="前端" title="this is web"/>
-                    <CellView tabLabel="休息视频" title="this is video"/>
                     <CellView tabLabel="瞎推荐" title="this is hot"/>
-                    <CellView tabLabel="福利" title="this is welfare"/>
+                    <CellView tabLabel="拓展资源" title="this is welfare"/>
+                    <CellView tabLabel="休息视频" title="this is video"/>
                 </ScrollableTabView>
             </View>
         )

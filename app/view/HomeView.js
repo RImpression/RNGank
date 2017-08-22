@@ -7,6 +7,7 @@ import {
     StyleSheet,
     ListView,
     RefreshControl,
+    InteractionManager,
     ActivityIndicator,
 } from 'react-native';
 import NavigationBar from './common/NavigationBar';
@@ -28,7 +29,9 @@ class HomeView extends Component {
     }
 
     componentDidMount() {
-        this._fetchData(0);
+        InteractionManager.runAfterInteractions(()=>{
+            this._fetchData(0);
+        })
     }
 
     shouldComponentUpdate(nextProps, nextState) {

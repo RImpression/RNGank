@@ -69,6 +69,7 @@ function fetchGankSortList(typeObj,opt,sort,pageNo) {
         console.log('react-fetch-girl',URL);
         return HttpUtils.fetchGet(URL)
                 .then((result)=>{
+                    console.log(3333,result);
                     dispatch({type:typeObj.SUCCESS,opt,data:result});
                 })
                 .catch((error)=>{
