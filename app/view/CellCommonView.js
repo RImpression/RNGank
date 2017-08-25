@@ -17,6 +17,7 @@ import {FETCH_GANK_SORT_STATUS} from '../actions/ActionTypes'
 import ToastUtils from '../utils/ToastUtils';
 import SortListCell from '../compoments/listCell/SortListCell';
 import DateUtils from '../utils/DateUtils';
+import WebDetailView from './WebDetailView';
 
 class CellCommonView extends Component {
     constructor(props) {
@@ -27,7 +28,6 @@ class CellCommonView extends Component {
 
     componentDidMount() {
         InteractionManager.runAfterInteractions(()=>{
-            console.log(4321,this.props.tabLabel);
             this._fetchData(this.props.tabLabel,0);
         })
     }
@@ -70,8 +70,28 @@ class CellCommonView extends Component {
         this.props.dispatch(fetchGankSortData(sort,opt,this.curPageNo));
     }
 
+    initSource() {
+        switch (this.props.tabLabel) {
+            case 'Android':
+                return this.props.androidSource;
+            case 'iOS':
+                return this.props.iosSource;
+            case '前端':
+                return this.props.webSource;
+            case '瞎推荐':
+                return this.props.randomSource;
+            case '拓展资源':
+                return this.props.extendedSource;
+            case '休息视频':
+                return this.props.videoSource;
+            default:
+                return [];
+        }
+    }
+
     render(){
-        let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.props.dataSource);
+        let sortSource = this.initSource();
+        let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(sortSource);
         let contentView;
         contentView = (
             <ListView
@@ -104,7 +124,7 @@ class CellCommonView extends Component {
      * @private
      */
     _onRefresh() {
-        this._fetchData(1);
+        this._fetchData(this.props.tabLabel,1);
     }
 
     /**
@@ -120,7 +140,7 @@ class CellCommonView extends Component {
 
         // 延迟1秒再调用数据
         setTimeout(() => {
-            this._fetchData(2);
+            this._fetchData(this.props.tabLabel,2);
         }, 1000)
     }
 
@@ -148,7 +168,10 @@ class CellCommonView extends Component {
                     type = {rowData.type}
                     who = {rowData.who}
                     publishedAt = {DateUtils.getShowDate(rowData.publishedAt)}
-                    clickAction = {()=>{console.log(6667,'you click '+rowID)}}/>
+                    clickAction = {()=>{this.props.navigator.push({
+                        component:WebDetailView,
+                        params:{url:rowData.url,title:rowData.desc},
+                    });}}/>
             </View>
         );
     };
@@ -173,10 +196,15 @@ const styles = StyleSheet.create({
 function select(store) {
     return {
         status: store.sortViewStore.status,
-        dataSource: store.sortViewStore.dataSource,
         isRefreshing: store.sortViewStore.isRefreshing,
         isLoadMore: store.sortViewStore.isLoadMore,
         opt: store.sortViewStore.opt,
+        androidSource: store.sortViewStore.androidSource,
+        iosSource: store.sortViewStore.iosSource,
+        webSource: store.sortViewStore.webSource,
+        randomSource: store.sortViewStore.randomSource,
+        extendedSource: store.sortViewStore.extendedSource,
+        videoSource: store.sortViewStore.videoSource,
     }
 }
 export default connect(select)(CellCommonView);

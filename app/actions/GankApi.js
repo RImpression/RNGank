@@ -2,6 +2,7 @@ import {
     FETCH_GANK_DAY_STATUS,
     FETCH_GANK_SORT_STATUS,
     FETCH_GANK_GIRL_STATUS,
+    FETCH_GANK_DAILY_STATUS,
 } from './ActionTypes';
 import HttpUtils from '../utils/HttpUtils';
 
@@ -70,10 +71,29 @@ function fetchGankSortList(typeObj,opt,sort,pageNo) {
         return HttpUtils.fetchGet(URL)
                 .then((result)=>{
                     console.log(3333,result);
-                    dispatch({type:typeObj.SUCCESS,opt,data:result});
+                    dispatch({type:typeObj.SUCCESS,opt,sort,data:result});
                 })
                 .catch((error)=>{
-                    dispatch({type:typeObj.FAILURE,opt,error});
+                    dispatch({type:typeObj.FAILURE,opt,sort,error});
                 });
+    }
+}
+
+export function fetchGankDailyData(dateString) {
+    return fetchGankDaily(FETCH_GANK_DAILY_STATUS,dateString);
+}
+
+function fetchGankDaily(typeObj,dateString) {
+    return (dispatch) => {
+        dispatch({type:typeObj.START});
+        let URL = `http://gank.io/api/day/${dateString}`
+        console.log('react-fetch-daily',URL);
+        return HttpUtils.fetchGet(URL)
+            .then((result)=>{
+                dispatch({type:typeObj.SUCCESS,data:result});
+            })
+            .catch((error)=>{
+                dispatch({type:typeObj.FAILURE,error});
+            })
     }
 }

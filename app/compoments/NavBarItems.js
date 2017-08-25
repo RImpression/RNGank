@@ -107,3 +107,39 @@ const rightItemStyles = StyleSheet.create({
         resizeMode:'contain'
     }
 });
+
+/**
+ * WebView左部返回键,允许内部页面返回
+ * leftButtom={
+ *       touchAction={()=>{}}
+ *       <NavBarBackItem {...props}/>}
+ */
+export class NavBarWebBackItem extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return(
+            <TouchableOpacity onPress={()=>{
+                 this.props.touchAction&&this.props.touchAction();
+            }}>
+                <Image
+                    style={webBackItemStyles.back_icon}
+                    source={require('../../images/icon_back.png')}/>
+            </TouchableOpacity>
+        )
+    }
+}
+const webBackItemStyles = StyleSheet.create({
+    item_view:{
+        width:25,
+        height:25,
+        marginLeft:12,
+        backgroundColor:'#FF0000'
+    },
+    back_icon:{
+        width:25,
+        height:25,
+        resizeMode:'contain'
+    }
+});

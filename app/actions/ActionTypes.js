@@ -15,3 +15,9 @@ export const FETCH_GANK_GIRL_STATUS = {
     SUCCESS:'fetch_gank_gril_success',
     FAILURE:'fetch_gank_girl_failure',
 };
+
+export const FETCH_GANK_DAILY_STATUS = {
+    START:'fetch_gank_daily_start',
+    SUCCESS:'fetch_gank_daily_success',
+    FAILURE:'fetch_gank_daily_failure',
+};

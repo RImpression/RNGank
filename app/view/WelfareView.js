@@ -17,10 +17,10 @@ import {
 } from 'react-native-lazyload';
 import { connect } from 'react-redux';
 import NavigationBar from './common/NavigationBar';
-import WebDetailView from './WebDetailView';
 import ToastUtils from '../utils/ToastUtils';
 import { fetchGankGirlData } from '../actions/GankApi';
 import {FETCH_GANK_GIRL_STATUS} from '../actions/ActionTypes';
+import ImageDetailView from './ImageDetailView';
 
 let {height, width} = Dimensions.get('window');
 class WelfareView extends Component {
@@ -66,11 +66,23 @@ class WelfareView extends Component {
         this.props.dispatch(fetchGankGirlData(opt, this.curPageNo));
     }
 
+    _onImageClick(item, navigator){
+        if(navigator){
+            navigator.push({
+                name:'ImageDetailView',
+                component : ImageDetailView,
+                params: {
+                    image:item
+                }
+            })
+        }
+    }
+
     _getImages(items, navigator){
         return(
             items.map((item,i)=>{
                 return(
-                    <TouchableOpacity key = {i}   style={{padding:2}} onPress = {()=>{}}>
+                    <TouchableOpacity key = {i}   style={{padding:2}} onPress = {()=>this._onImageClick(item,navigator)}>
                         <LazyloadImage
                             host="lazy-scroll"
                             key = {i+'_'+item._id} style={{height:parseInt(Math.random() * 20 + 12) * 10,width:(width-8)/2}} source = {{uri :item.url}}>
