@@ -18,6 +18,7 @@ import {FETCH_GANK_DAY_STATUS} from '../actions/ActionTypes';
 import CardListCell from '../compoments/listCell/CardListCell';
 import ImgFromHtmlUtils from '../utils/ImgFromHtmlUtil';
 import DateUtils from '../utils/DateUtils';
+import DailyContentView from './DailyContentView';
 
 class HomeView extends Component {
     constructor(props) {
@@ -152,7 +153,10 @@ class HomeView extends Component {
                     imgUrl={imgUrl}
                     title={rowData.title}
                     date={DateUtils.getShowDate(rowData.created_at)}
-                    clickAction={()=>{console.log(6667,'you click '+rowID)}}/>
+                    clickAction={()=>{this.props.navigator.push({
+                        component:DailyContentView,
+                        params:{dateString:'2017/08/28'},
+                    });}}/>
             </View>
         );
     };
