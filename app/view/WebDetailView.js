@@ -47,13 +47,7 @@ export default class WebDetailView extends Component {
                     leftButton={<NavBarWebBackItem
                                 touchAction={()=>this.onBackPress()}
                                 {...this.props}/>}
-                    title={this.state.title}
-                    rightButton={<NavBarRightItem
-                                label="保存"
-                                icon={require('../../images/member_welfare.press.png')}
-                                clickAction={()=>{console.log('you click')}}
-                                {...this.props}/>}
-                />
+                    title={this.state.title}/>
                 <WebView
                     ref={webView=>this.webView=webView}
                     startInLoadingState={true}

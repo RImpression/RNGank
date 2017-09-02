@@ -13,6 +13,7 @@ import configureStore from './stores';
 import ToastUtils from './utils/ToastUtils';
 let  window = global || window;
 window.Common = require('./config/Common');
+import SplashScreen from 'react-native-splash-screen'
 
 const store = configureStore();
 
@@ -38,6 +39,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        SplashScreen.hide();
         BackAndroid.addEventListener('hardwareBackPress', this.onBack);
     }
 

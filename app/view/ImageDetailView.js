@@ -7,10 +7,14 @@ import{
     Animated,
     Easing,
     TouchableWithoutFeedback,
+    TouchableOpacity,
     Image,
     StyleSheet,
+    CameraRoll,
     Text
 } from 'react-native';
+import SaveImage from 'react-native-save-image';
+import ToastUtils from '../utils/ToastUtils';
 class ImageDetailView extends Component {
 
     constructor(props) {
@@ -26,6 +30,8 @@ class ImageDetailView extends Component {
         LayoutAnimation.spring();
     }
     componentDidMount(){
+        SaveImage.setAlbumName('GankRim');
+        SaveImage.setCompressQuality(80); // 整数品质
         Animated.timing(this.state.h, {
             toValue: height * 1,
             duration: 500,
@@ -46,6 +52,20 @@ class ImageDetailView extends Component {
         }
     }
 
+    /**
+     * 保存图片至相册
+     * CameraRoll在Android中只支持保存本地图片到相册，所以无法使用
+     * @param url 图片地址
+     */
+    saveImage(url) {
+        CameraRoll.saveToCameraRoll(url).then(function (success) {
+                ToastUtils.showToast('妹子已成功躺入你的相册中啦....');
+            }, function (error) {
+                ToastUtils.showToast('保存妹子失败，请稍后再试...');
+            }
+        )
+    }
+
     render() {
         return(
             <View style={{flex :1}}>
@@ -54,6 +74,12 @@ class ImageDetailView extends Component {
                         <Animated.Image style = {{height:this.state.h, width:this.state.w}} source = {{uri:this.image.url}}></Animated.Image>
                     </TouchableWithoutFeedback>
                 </View>
+                <TouchableOpacity style={{width:30,height:30,position:'absolute',top:10,right:10}}
+                                  onPress={()=>{SaveImage.downloadImage(this.image.url,this.image.url)}}>
+                    <Image style={{width:30,height:30}}
+                           source={require('../../images/icon_save.png')}
+                           resizeMode='cover'/>
+                </TouchableOpacity>
 
             </View>
         );

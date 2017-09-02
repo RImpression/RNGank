@@ -13,6 +13,7 @@ export default function DailyReducer(state=initialStare, action) {
             return {
                 ...state,
                 status:action.type,
+                result:{},
             };
         case FETCH_GANK_DAILY_STATUS.SUCCESS:
             let category = action.data.category;

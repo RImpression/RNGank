@@ -147,6 +147,7 @@ class HomeView extends Component {
 
     _renderRow = (rowData, sectionID, rowID) => {
         let imgUrl = ImgFromHtmlUtils.getImageSrc(rowData.content);
+        let dateString = DateUtils.getDateUrl(rowData.created_at)
         return (
             <View style={{width:Common.size.width}}>
                 <CardListCell
@@ -155,7 +156,7 @@ class HomeView extends Component {
                     date={DateUtils.getShowDate(rowData.created_at)}
                     clickAction={()=>{this.props.navigator.push({
                         component:DailyContentView,
-                        params:{dateString:'2017/08/28'},
+                        params:{dateString:dateString,...this.props},
                     });}}/>
             </View>
         );

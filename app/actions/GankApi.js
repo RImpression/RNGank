@@ -25,8 +25,7 @@ function fetchGankDayList(typeObj,opt,pageNo) {
         console.log('react-fetch-url',URL);
         return HttpUtils.fetchGet(URL)
             .then((result)=>{
-                console.log(23333,result);
-                dispatch({type:typeObj.SUCCESS,opt,data:result})    
+                dispatch({type:typeObj.SUCCESS,opt,data:result})
             })
             .catch((error)=>{
                 dispatch({type:typeObj.FAILURE,opt,error})
@@ -70,7 +69,6 @@ function fetchGankSortList(typeObj,opt,sort,pageNo) {
         console.log('react-fetch-girl',URL);
         return HttpUtils.fetchGet(URL)
                 .then((result)=>{
-                    console.log(3333,result);
                     dispatch({type:typeObj.SUCCESS,opt,sort,data:result});
                 })
                 .catch((error)=>{
@@ -79,6 +77,11 @@ function fetchGankSortList(typeObj,opt,sort,pageNo) {
     }
 }
 
+/**
+ * 获取某日数据集合
+ * @param dateString  日期 2017/08/30
+ * @returns {*}
+ */
 export function fetchGankDailyData(dateString) {
     return fetchGankDaily(FETCH_GANK_DAILY_STATUS,dateString);
 }
