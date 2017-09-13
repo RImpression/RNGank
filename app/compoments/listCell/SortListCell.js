@@ -30,7 +30,7 @@ export default class SortListCell extends Component {
                         </View>
                         <View style={styles.bottom_view}>
                             <Text style={styles.type_text}>{this.props.type}</Text>
-                            <Text style={styles.author_text}>author:  {this.props.who?this.props.who:'无'}</Text>
+                            <Text numberOfLines={1} style={styles.author_text}>author:  {this.props.who?this.props.who:'无'}</Text>
                             <Text style={styles.date_text}>{this.props.publishedAt}</Text>
                         </View>
                     </View>
@@ -62,17 +62,19 @@ const styles = StyleSheet.create({
         lineHeight: 25,
     },
     author_text:{
-        width:190,
-        marginLeft:70,
+        width:150,
+        marginLeft:40,
         fontSize:14,
         color:'#95989a',
     },
     date_text:{
+        marginLeft:10,
         fontSize:14,
         color:'#95989a'
     },
     type_text:{
+        width:57,
         fontSize:14,
-        color:'#95989a'
+        color:'#95989a',
     }
 });

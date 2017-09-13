@@ -32,7 +32,6 @@ export default function GirlReducer(state=initialStare, action) {
                 isLoadMore:isLoadMore
             };
         case FETCH_GANK_GIRL_STATUS.FAILURE:
-            console.log(222222);
             return {
                 ...state,
                 status:action.type,

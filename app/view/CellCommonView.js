@@ -106,7 +106,7 @@ class CellCommonView extends Component {
                 refreshControl={
                 <RefreshControl
                     refreshing={this.props.isRefreshing}
-                    onRefresh={this._onRefresh}
+                    onRefresh={this._onRefresh.bind(this)}
                     tintColor='#AAAAAA'
                     title='下拉刷新'
                     progressBackgroundColor='#FFFFFF'/>}

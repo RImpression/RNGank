@@ -104,7 +104,8 @@ const rightItemStyles = StyleSheet.create({
     image_view:{
         width:25,
         height:25,
-        resizeMode:'contain'
+        resizeMode:'contain',
+        tintColor:'#FFFFFF'
     }
 });
 

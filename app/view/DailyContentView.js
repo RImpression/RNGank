@@ -8,14 +8,17 @@ import {
     ScrollView,
     Platform,
     TouchableOpacity,
+    ActivityIndicator,
     InteractionManager,
 } from 'react-native';
 import {connect} from 'react-redux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import {fetchGankDailyData} from '../actions/GankApi';
+import {fetchGankDailyData,clearGankDaily} from '../actions/GankApi';
+import {FETCH_GANK_DAILY_STATUS} from '../actions/ActionTypes';
 import {NavBarBackItem} from './../compoments/NavBarItems';
 import WebDetailView from './WebDetailView';
 import ImageDetailView from './ImageDetailView';
+import NavigationBar from './common/NavigationBar';
 
 class DailyContentView extends Component {
 
@@ -32,7 +35,8 @@ class DailyContentView extends Component {
     }
 
     componentWillUnmount() {
-
+        //清空store数据，防止点击其他条目时出现数据重载
+        this.props.dispatch(clearGankDaily());
     }
 
     //顶部返回键
@@ -130,21 +134,40 @@ class DailyContentView extends Component {
                <View key={i}>{this.renderCellView(data)}</View>
            )
         });
-
-        return(
-            <ParallaxScrollView
-                backgroundColor="#4c4c4c"
-                contentBackgroundColor="#FFFFFF"
-                parallaxHeaderHeight={250}
-                stickyHeaderHeight={44}
-                renderFixedHeader={this.renderFixedView}
-                renderStickyHeader={this.renderStickyView}
-                renderForeground={this.renderForegroundView}>
-                <View style={{ height: 600 }}>
-                    {content}
+        if (this.props.status == FETCH_GANK_DAILY_STATUS.SUCCESS) {
+            return (
+                <ParallaxScrollView
+                    backgroundColor="#4c4c4c"
+                    contentBackgroundColor="#FFFFFF"
+                    parallaxHeaderHeight={250}
+                    stickyHeaderHeight={44}
+                    renderFixedHeader={this.renderFixedView}
+                    renderStickyHeader={this.renderStickyView}
+                    renderForeground={this.renderForegroundView}>
+                    <View style={{ height: 600 }}>
+                        {content}
+                    </View>
+                </ParallaxScrollView>
+            )
+        } else if (this.props.status == FETCH_GANK_DAILY_STATUS.FAILURE) {
+            return (
+                <View style={styles.container}>
+                    <NavigationBar title={this.props.dateString} />
+                    <Text style={{fontSize:20,color:'#333333'}}>数据请求失败</Text>
                 </View>
-            </ParallaxScrollView>
-        )
+            )
+        } else {
+            return (
+                <View style={styles.container}>
+                    <NavigationBar title={this.props.dateString} />
+                    <ActivityIndicator
+                        animating={true}
+                        color='#4c4c4c'
+                        style={{height: 80}}
+                        size="large" />
+                </View>
+            )
+        }
 
     }
 }
@@ -152,7 +175,6 @@ class DailyContentView extends Component {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#F2F2F7',
     },
     fixedSection: {
         position: 'absolute',

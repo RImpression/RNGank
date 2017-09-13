@@ -100,7 +100,6 @@ export default function SortReducer(state=initialStare, action) {
             }
 
         case FETCH_GANK_SORT_STATUS.FAILURE:
-            console.log(222244);
             return {
                 ...state,
                 status:action.type,

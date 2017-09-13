@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
         borderRadius:5,
         borderWidth:0.5,
         borderColor:'#95989A',
-        elevation:5,
+        elevation:2,
     },
     image_view:{
         width: Common.size.width-20,
         height:220,
         borderTopLeftRadius:5,
-        borderTopLeftRadius:5
+        borderTopRightRadius:5
     },
     title_text:{
         fontSize:13,

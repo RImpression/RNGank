@@ -22,7 +22,6 @@ function fetchGankDayList(typeObj,opt,pageNo) {
     return (dispatch) => {
         dispatch({type:typeObj.START,opt:opt});
         let URL = `http://gank.io/api/history/content/${PAGE_NUM}/${pageNo}`;
-        console.log('react-fetch-url',URL);
         return HttpUtils.fetchGet(URL)
             .then((result)=>{
                 dispatch({type:typeObj.SUCCESS,opt,data:result})
@@ -66,7 +65,6 @@ function fetchGankSortList(typeObj,opt,sort,pageNo) {
     return (dispatch) => {
         dispatch({type:typeObj.START,opt:opt});
         let URL = `http://gank.io/api/data/${sort}/${PAGE_NUM}/${pageNo}`;
-        console.log('react-fetch-girl',URL);
         return HttpUtils.fetchGet(URL)
                 .then((result)=>{
                     dispatch({type:typeObj.SUCCESS,opt,sort,data:result});
@@ -90,7 +88,6 @@ function fetchGankDaily(typeObj,dateString) {
     return (dispatch) => {
         dispatch({type:typeObj.START});
         let URL = `http://gank.io/api/day/${dateString}`
-        console.log('react-fetch-daily',URL);
         return HttpUtils.fetchGet(URL)
             .then((result)=>{
                 dispatch({type:typeObj.SUCCESS,data:result});
@@ -98,5 +95,15 @@ function fetchGankDaily(typeObj,dateString) {
             .catch((error)=>{
                 dispatch({type:typeObj.FAILURE,error});
             })
+    }
+}
+
+/**
+ * 清空store数据
+ * @returns {function(*)}
+ */
+export function clearGankDaily() {
+    return(dispatch) => {
+        dispatch({type:FETCH_GANK_DAILY_STATUS.START});
     }
 }

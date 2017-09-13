@@ -8,10 +8,12 @@ import {
     Platform,
     TouchableOpacity,
     Text,
+    Share,
     View,
 } from 'react-native'
 import NavigationBar from './common/NavigationBar';
 import {NavBarWebBackItem,NavBarRightItem} from './../compoments/NavBarItems';
+import ToastUtils from '../utils/ToastUtils'
 
 export default class WebDetailView extends Component {
     constructor(props) {
@@ -38,6 +40,34 @@ export default class WebDetailView extends Component {
         });
     }
 
+    /**
+     * 系统分享
+     * @param message 内容
+     * @param url   链接
+     * @param title 标题
+     * @private
+     */
+    _shareContent(message,url) {
+        Share.share({
+            message: '【干货集中营】'+message+url,
+            url: url,
+        }) .then(this._showResult)
+            .catch((error) => ToastUtils.showToast('分享失败: ' + error.message));
+    }
+
+    _showResult(result) {
+        if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+                console.log('shared with an activityType: ' + result.activityType)
+            } else {
+                console.log('shared');
+            }
+        } else if (result.action === Share.dismissedAction) {
+            console.log('dismissed');
+        }
+    }
+
+
     render() {
         return(
             <View style={styles.container}>
@@ -46,6 +76,11 @@ export default class WebDetailView extends Component {
                     popEnabled={false}
                     leftButton={<NavBarWebBackItem
                                 touchAction={()=>this.onBackPress()}
+                                {...this.props}/>}
+                    rightButton={<NavBarRightItem
+                                icon={require('../../images/icon_share.png')}
+                                isIcon={true}
+                                clickAction={()=>{this._shareContent(this.state.title,this.state.url)}}
                                 {...this.props}/>}
                     title={this.state.title}/>
                 <WebView

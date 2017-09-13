@@ -32,7 +32,6 @@ export default function RecommendReducer(state = initialState,action) {
                 isLoadMore:isLoadMore
             };
         case FETCH_GANK_DAY_STATUS.FAILURE:
-            console.log(222222);
             return {
                 ...state,
                 status:action.type,
