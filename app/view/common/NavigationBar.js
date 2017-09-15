@@ -58,7 +58,9 @@ export default class NavigationBar extends Component {
     render() {
         let statusBar = !this.props.statusBar.hidden ?
             <View style={styles.statusBar}>
-                <StatusBar {...this.props.statusBar} />
+                <StatusBar backgroundColor='#5C5C5C'
+                           translucent={true}
+                           animated={true}   />
             </View>: null;
 
         let titleView = this.props.titleView ? this.props.titleView :
@@ -84,6 +86,7 @@ export default class NavigationBar extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#4c4c4c',
+        flexDirection:'column'
     },
     navBar: {
         flexDirection: 'row',
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     statusBar: {
-        height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT:0,
+        height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT:28,
 
     },
 });

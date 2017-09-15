@@ -65,7 +65,7 @@ class DailyContentView extends Component {
                 <TouchableOpacity onPress={()=>{this.props.navigator.push({
                                 component : ImageDetailView,
                                 params: {image:welfare?welfare[0]:{} } })}}>
-                    <Image style={{height:300,width:Common.size.width}}
+                    <Image style={{height:278,width:Common.size.width}}
                            source={{uri:uri}}
                            resizeMode='cover'/>
                 </TouchableOpacity>
@@ -139,8 +139,8 @@ class DailyContentView extends Component {
                 <ParallaxScrollView
                     backgroundColor="#4c4c4c"
                     contentBackgroundColor="#FFFFFF"
-                    parallaxHeaderHeight={250}
-                    stickyHeaderHeight={44}
+                    parallaxHeaderHeight={278}
+                    stickyHeaderHeight={72}
                     renderFixedHeader={this.renderFixedView}
                     renderStickyHeader={this.renderStickyView}
                     renderForeground={this.renderForegroundView}>
@@ -183,15 +183,15 @@ const styles = StyleSheet.create({
         top: 0,
         bottom: 0,
         paddingRight: 8,
-        paddingTop: (Platform.OS === 'ios') ? 20 : 0,
+        paddingTop: (Platform.OS === 'ios') ? 20 : 28,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     stickySection: {
-        height: 44,
+        height: 72,
         justifyContent: 'center',
-        paddingTop: (Platform.OS === 'ios') ? 20 : 0,
+        paddingTop: (Platform.OS === 'ios') ? 20 : 28,
         alignItems: 'center',
     },
     title_text:{
@@ -199,10 +199,11 @@ const styles = StyleSheet.create({
         color:'#FFFFFF'
     },
     image_view:{
-        height: 300,
+        height: 278,
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingTop: (Platform.OS === 'ios') ? 20 : 28,
     },
 });
 
