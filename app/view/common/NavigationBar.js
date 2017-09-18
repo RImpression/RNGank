@@ -82,7 +82,7 @@ export default class NavigationBar extends Component {
         )
     }
 }
-
+const statusHeight = StatusBar.currentHeight == 25 ? 0 : StatusBar.currentHeight;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#4c4c4c',
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     statusBar: {
-        height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT:28,
+        height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT:statusHeight,
 
     },
 });

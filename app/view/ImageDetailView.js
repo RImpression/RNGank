@@ -74,7 +74,7 @@ class ImageDetailView extends Component {
                         <Animated.Image style = {{height:this.state.h, width:this.state.w}} source = {{uri:this.image.url}}></Animated.Image>
                     </TouchableWithoutFeedback>
                 </View>
-                <TouchableOpacity style={{width:30,height:30,position:'absolute',top:10,right:10}}
+                <TouchableOpacity style={{width:30,height:30,position:'absolute',top:10+Common.statusHeight,right:10}}
                                   onPress={()=>{SaveImage.downloadImage(this.image.url,this.image.url)}}>
                     <Image style={{width:30,height:30}}
                            source={require('../../images/icon_save.png')}

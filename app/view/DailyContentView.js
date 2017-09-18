@@ -7,6 +7,7 @@ import {
     StyleSheet,
     ScrollView,
     Platform,
+    StatusBar,
     TouchableOpacity,
     ActivityIndicator,
     InteractionManager,
@@ -19,6 +20,7 @@ import {NavBarBackItem} from './../compoments/NavBarItems';
 import WebDetailView from './WebDetailView';
 import ImageDetailView from './ImageDetailView';
 import NavigationBar from './common/NavigationBar';
+const statusHeight = StatusBar.currentHeight == 25 ? 0 : StatusBar.currentHeight;
 
 class DailyContentView extends Component {
 
@@ -65,7 +67,7 @@ class DailyContentView extends Component {
                 <TouchableOpacity onPress={()=>{this.props.navigator.push({
                                 component : ImageDetailView,
                                 params: {image:welfare?welfare[0]:{} } })}}>
-                    <Image style={{height:278,width:Common.size.width}}
+                    <Image style={{height:250+statusHeight,width:Common.size.width}}
                            source={{uri:uri}}
                            resizeMode='cover'/>
                 </TouchableOpacity>
@@ -139,8 +141,8 @@ class DailyContentView extends Component {
                 <ParallaxScrollView
                     backgroundColor="#4c4c4c"
                     contentBackgroundColor="#FFFFFF"
-                    parallaxHeaderHeight={278}
-                    stickyHeaderHeight={72}
+                    parallaxHeaderHeight={250+statusHeight}
+                    stickyHeaderHeight={44+statusHeight}
                     renderFixedHeader={this.renderFixedView}
                     renderStickyHeader={this.renderStickyView}
                     renderForeground={this.renderForegroundView}>
@@ -183,15 +185,15 @@ const styles = StyleSheet.create({
         top: 0,
         bottom: 0,
         paddingRight: 8,
-        paddingTop: (Platform.OS === 'ios') ? 20 : 28,
+        paddingTop: (Platform.OS === 'ios') ? 20 : statusHeight,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     stickySection: {
-        height: 72,
+        height: 44+statusHeight,
         justifyContent: 'center',
-        paddingTop: (Platform.OS === 'ios') ? 20 : 28,
+        paddingTop: (Platform.OS === 'ios') ? 20 : statusHeight,
         alignItems: 'center',
     },
     title_text:{
@@ -199,11 +201,11 @@ const styles = StyleSheet.create({
         color:'#FFFFFF'
     },
     image_view:{
-        height: 278,
+        height: 250+statusHeight,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: (Platform.OS === 'ios') ? 20 : 28,
+        paddingTop: (Platform.OS === 'ios') ? 20 : statusHeight,
     },
 });
 

@@ -97,7 +97,7 @@ class HomeView extends Component {
         return(
             <View style={styles.container}>
                 <NavigationBar
-                    title={'干货集中营'}
+                    title={'RNGank'}
                 />
                 {contentView}
             </View>

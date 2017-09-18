@@ -12,6 +12,7 @@ import TabNavigator from "react-native-tab-navigator";
 import HomeView from './view/HomeView';
 import ClassificationView from './view/ClassificationView';
 import WelfareView from './view/WelfareView';
+import AboutView from './view/AboutView';
 
 const SELECTED_TAG = 'selected';
 const SELECTED_TITLE = '精选';
@@ -27,6 +28,11 @@ const WELFARE_TAG = 'welfare';
 const WELFARE_TITLE = '福利';
 const WELFARE_NORMAL = require('./../images/member_welfare.normal.png');
 const WELFARE_FOCUS = require('./../images/member_welfare.press.png');
+
+const ABOUT_TAG = 'about';
+const ABOUT_TITLE = '关于';
+const ABOUT_NORMAL = require('./../images/member_about_normal.png');
+const ABOUT_FOCUS = require('./../images/member_about_press.png');
 
 class MainNav extends Component {
 
@@ -55,6 +61,7 @@ class MainNav extends Component {
                 {this._renderTabItem(SELECTED_TAG, SELECTED_TITLE, SELECTED_NORMAL, SELECTED_FOCUS)}
                 {this._renderTabItem(SORT_TAG, SORT_TITLE, SORT_NORMAL, SORT_FOCUS)}
                 {this._renderTabItem(WELFARE_TAG, WELFARE_TITLE, WELFARE_NORMAL, WELFARE_FOCUS)}
+                {this._renderTabItem(ABOUT_TAG, ABOUT_TITLE, ABOUT_NORMAL, ABOUT_FOCUS)}
             </TabNavigator>
         )
     }
@@ -97,6 +104,8 @@ class MainNav extends Component {
                 return (<ClassificationView {...this.props}/>);
             case WELFARE_TAG:
                 return (<WelfareView {...this.props}/>);
+            case ABOUT_TAG:
+                return (<AboutView {...this.props}/>);
         }
     }
 }

@@ -6,6 +6,7 @@ let Platform = require('Platform');
 let {
     Dimensions,
     PixelRatio,
+    StatusBar,
 } = React;
 
 let width = require('Dimensions').get('window').width;
@@ -17,6 +18,7 @@ let navBarHeight = Platform.OS === 'android'?barTop:(barTop);
 
 let height = Platform.OS === 'android'? require('Dimensions').get('window').height: require('Dimensions').get('window').height;
 let contentHeight = Platform.OS === 'android'? height-navBarHeight: height-navBarHeight;
+let statusHeight = StatusBar.currentHeight == 25 ? 0 : StatusBar.currentHeight;
 
 let size = {
     width: width,
@@ -30,4 +32,5 @@ let size = {
 
 module.exports = {
     size:size,
+    statusHeight:statusHeight,
 };
