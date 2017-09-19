@@ -1,4 +1,4 @@
-{
+ {
   "introduce": {
       "title":"介绍与帮助",
       "content":"RNGank客户端不定期推送精选妹纸图，技术干货（设计Android,iOS,前端等技术），以及趣味视频，供用户在闲暇时打发时间。\n\nRNGank客户端实为作者业余时间练手项目，代码完全开源，使用流行的Redux架构开发，注释清晰，代码通俗易懂，适合新手阅读学习。RNGank数据内容来源于代码家的http://gank.io,感谢大牛们的无私奉献。\n\n项目开源地址：https://github.com/RImpression/RNGank"
@@ -7,7 +7,7 @@
       "title":"开发人员",
       "name":"Rim",
       "des":"React Native&&Android开发工程师",
-      "avatar":"",
+      "avatar":"http://chuantu.biz/t6/55/1505790296x2890191709.jpg",
       "motto":"态度决定高度"
   },
   "source":{

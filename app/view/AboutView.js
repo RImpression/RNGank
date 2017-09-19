@@ -26,14 +26,6 @@ export default class AboutView extends Component {
 
     }
 
-    //顶部返回键
-    renderFixedView = () => {
-        return(
-            <View style={styles.fixedSection}>
-            </View>
-        )
-    };
-
     //上滑显示标题
     renderStickyView = () => {
         return(
@@ -74,11 +66,16 @@ export default class AboutView extends Component {
                 <CellView
                     title={AboutData.introduce.title}
                     content={AboutData.introduce.content}/>
+                <AuthorCell
+                    title={AboutData.author.title}
+                    author={AboutData.author.name}
+                    motto={AboutData.author.motto}
+                    des={AboutData.author.des}
+                    avatar={AboutData.author.avatar}/>
                 <CellView
                     title={AboutData.source.title}
                     content={AboutData.source.content}/>
             </View>
-
         );
 
         return (
@@ -87,11 +84,10 @@ export default class AboutView extends Component {
                 contentBackgroundColor="#FFFFFF"
                 parallaxHeaderHeight={300+statusHeight}
                 stickyHeaderHeight={44+statusHeight}
-                renderFixedHeader={this.renderFixedView}
                 renderStickyHeader={this.renderStickyView}
                 renderBackground={this.renderBackground}
                 renderForeground={this.renderForegroundView}>
-                <View style={{ height: 600 }}>
+                <View style={{ height: 650 }}>
                     {content}
                 </View>
             </ParallaxScrollView>
@@ -102,12 +98,38 @@ export default class AboutView extends Component {
 class CellView extends Component {
     render() {
         return (
-            <View style={{padding: 10,backgroundColor:'#F4F4F4'}}>
+            <View style={styles.cell_view}>
                 <View style={{paddingVertical:5}}>
-                    <Text style={{fontSize:16,color:'#4c4c4c'}}>{this.props.title}</Text>
+                    <Text style={styles.cell_text16}>{this.props.title}</Text>
                 </View>
-                <View style={{padding:12,backgroundColor:'#FFFFFF'}}>
-                    <Text style={{fontSize:14,color:'#4c4c4c',lineHeight:23}}>{this.props.content}</Text>
+                <View style={styles.cell_content_view}>
+                    <Text style={[styles.cell_text14,{lineHeight:23}]}>{this.props.content}</Text>
+                </View>
+            </View>
+        )
+    }
+}
+
+class AuthorCell extends Component {
+    render() {
+        return (
+            <View style={styles.cell_view}>
+                <View style={{paddingVertical:5}}>
+                    <Text style={styles.cell_text16}>{this.props.title}</Text>
+                </View>
+                <View style={[styles.cell_content_view,{flexDirection:'row'}]}>
+                    <View style={{flex:1}}>
+                        <Image style={styles.cell_author_avatar}
+                                source={{uri:this.props.avatar}}
+                                resizeMode='cover'/>
+                    </View>
+                    <View style={{flex:4}}>
+                        <View style={{flexDirection:'row',alignItems:'flex-end'}}>
+                            <Text style={styles.cell_text16}>{this.props.author}</Text>
+                            <Text style={[styles.cell_text14,{marginLeft:25}]}>{this.props.motto}</Text>
+                        </View>
+                        <Text style={[styles.cell_text14,{paddingTop:5}]}>{this.props.des}</Text>
+                    </View>
                 </View>
             </View>
         )
@@ -147,6 +169,29 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingTop: (Platform.OS === 'ios') ? 20 : statusHeight,
     },
+    cell_view:{
+        padding: 10,
+        backgroundColor:'#F4F4F4'
+    },
+    cell_content_view:{
+        padding:12,
+        backgroundColor:'#FFFFFF'
+    },
+    cell_text16:{
+        fontSize:16,
+        color:'#4c4c4c'
+    },
+    cell_text14:{
+        fontSize:14,
+        color:'#4c4c4c'
+    },
+    cell_author_avatar:{
+        width:50,
+        height:50,
+        borderRadius:25,
+        borderWidth:0.5,
+        borderColor:'#4c4c4c'
+    }
 });
 
 
