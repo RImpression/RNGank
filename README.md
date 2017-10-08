@@ -1,5 +1,5 @@
 ## RNGank
-RNGank是一款用react-native实现的Gank.io（干货集中营）客户端。客户端每日分享妹子图和技术干货（涉及Android、iOS、前端等），还有供大家闲时欣赏的趣味视频。
+RNGank是一款根据[干货集中营](http://gank.io/ "Gank.io")提供的接口，用react-native实现的Gank.io客户端，为作者闲暇时练手项目。客户端每日分享妹子图和技术干货（涉及Android、iOS、前端等），还有供大家闲时欣赏的趣味视频。
 
 ### 下载
 - [apk](https://github.com/RImpression/RNGank/tree/master/apk)下载地址
